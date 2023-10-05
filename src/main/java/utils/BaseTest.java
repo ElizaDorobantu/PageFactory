@@ -1,15 +1,24 @@
 package utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
+
+import com.google.common.io.Files;
 
 import pages.BasePage;
 
@@ -24,7 +33,7 @@ public class BaseTest {
 	//pentru a rula am nevoie obligatoriu de o metoda @Test
 	
 	@Parameters({"appURL"})
-	@BeforeMethod(alwaysRun = true)
+	@BeforeClass(alwaysRun = true)
 	public void setup(String appURL) {
 		
 		//System.setProperty("webdriver.chrome.driver","path//chromedriver.exe");
@@ -44,14 +53,28 @@ public class BaseTest {
 		//driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
 		driver.get(appURL);
 		
-		app = new BasePage();
+		app = new BasePage(driver);
 	}
 	
-	@AfterMethod (alwaysRun = true)
+	@AfterClass (alwaysRun = true)
 	public void tearDown() throws InterruptedException {
 		Thread.sleep(4000);//bad practice
 		driver.close();//inchide doar tabul curent
 		//driver.quit();//inchide browserul indiferent cate taburi are deschise
 	}
-
+	
+	@AfterMethod
+	public void recordFailure(ITestResult result) {
+		if(ITestResult.FAILURE == result.getStatus()) {
+			TakesScreenshot poza = (TakesScreenshot) driver;
+			 File picture = poza.getScreenshotAs(OutputType.FILE);
+			 String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+			 try {
+				 Files.copy(picture, new File("poze/"+result.getName()+" - "+timestamp+".png")); 
+			 }
+			 catch(IOException e) {
+				 e.printStackTrace();
+			 }
+	}
+	}
 }
