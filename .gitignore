@@ -4,4 +4,6 @@
 bin/
 test-output/*
 target/
+logs/
+poze/
  
