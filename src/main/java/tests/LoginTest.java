@@ -27,9 +27,9 @@ public class LoginTest extends BaseTest{
 	public void loginTestInvalid(String username,String password) {
 		app.click(app.menu.myAccountLink);
 		app.myAccount.loginInApp(username, password);
-		assertTrue(app.checkElementIsDisplayed(app.myAccount.usernameGreetings));
+		//assertTrue(app.checkElementIsDisplayed(app.myAccount.usernameGreetings));
 		ScreenShots.screenshot(driver); 
-		assertTrue(app.myAccount.usernameGreetings.isDisplayed()); 
+		assertTrue(app.myAccount.loginErrorMsg.isDisplayed()); 
 		//cele 2 linii de mai sus cu assertTrue fac acelasi lucru
 	}
 //testul din PageObjectModel

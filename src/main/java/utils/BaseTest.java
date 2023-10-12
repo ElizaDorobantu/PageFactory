@@ -24,24 +24,24 @@ import pages.BasePage;
 
 //clase utilitare pentru setup
 
-public class BaseTest {
+public class BaseTest extends Driver{
 	
-	public static WebDriver driver;//instanta de browser
+	public WebDriver driver;//instanta de browser
 	//static ->obiectul e instantiat inainte de alte instantieri
 	public BasePage app;
 	
 	//pentru a rula am nevoie obligatoriu de o metoda @Test
 	
-	@Parameters({"appURL"})
+	@Parameters({"appURL", "browser"})
 	@BeforeClass(alwaysRun = true)
-	public void setup(String appURL) {
+	public void setup(String appURL, String browser) {
 		
 		//System.setProperty("webdriver.chrome.driver","path//chromedriver.exe");
 		//comanda de mai sus e din versiunea 3. Incepand cu 4 nu mai e nevoie de path
 		//Boni Garcia webdriver manager a facut o librarie 
 		
-		driver = new EdgeDriver();
-		
+		//driver = new EdgeDriver();
+		driver = initDriver(browser);
 		// clasa BaseTest e facuta ca si punct central pt a deschide /inchide browserul dintr-un singur loc
 		
 		driver.manage().window().maximize();//mareste fereastra de la browser
