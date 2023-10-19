@@ -41,14 +41,14 @@ public class Driver {
 	
 	public static ChromeOptions getChromeOptions() {
 		ChromeOptions option = new ChromeOptions();
-		option.addArguments("--headless");
-		option.addArguments("--window-size=1580, 1280");
+//		option.addArguments("--headless");
+//		option.addArguments("--window-size=1580, 1280");
 		return option;
 	}
 	
 	public static FirefoxOptions getFirefoxOptions() {
 		FirefoxBinary firefoxBinary = new FirefoxBinary();
-		firefoxBinary.addCommandLineOptions("--headless");
+//		firefoxBinary.addCommandLineOptions("--headless");
 		FirefoxOptions firefoxOptions = new FirefoxOptions();
 		firefoxOptions.setBinary(firefoxBinary);
 		return firefoxOptions;
@@ -56,8 +56,8 @@ public class Driver {
 	
 	public static EdgeOptions getEdgeOptions() {
 		EdgeOptions edgeOptions = new EdgeOptions();
-		edgeOptions.addArguments("--headless");
-		edgeOptions.addArguments("--window-size=1580, 1280");
+//		edgeOptions.addArguments("--headless");
+//		edgeOptions.addArguments("--window-size=1580, 1280");
 		return edgeOptions;
 	}
 }
