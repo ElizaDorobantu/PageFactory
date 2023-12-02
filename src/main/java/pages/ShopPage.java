@@ -37,4 +37,9 @@ public class ShopPage extends SeleniumWrappers{
 	
 	@FindBy(css="button[id='place_order']")
 	public WebElement placeOrder;
+	
+	@@FindBy(css="div[class='woocommerce-order']")
+	public WebElement thankYouMessage;
+	
 }
+

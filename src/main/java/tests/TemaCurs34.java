@@ -45,5 +45,6 @@ public class TemaCurs34 extends BaseTest{
 		app.click(app.shopPage.checkout);
 		app.click(app.shopPage.acceptTerms);
 		app.click(app.shopPage.placeOrder);
+		assertTrue((app.shopPage.thankYouMessage).getText().equals("Thank you. Your order has been received."));
 	}
 }
