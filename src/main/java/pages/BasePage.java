@@ -12,4 +12,5 @@ public class BasePage extends SeleniumWrappers{
 
 	public MenuPage menu = new MenuPage(driver);
 	public MyAccountPage myAccount = new MyAccountPage(driver);
+	public ShopPage shopPage = new ShopPage(driver);
 }

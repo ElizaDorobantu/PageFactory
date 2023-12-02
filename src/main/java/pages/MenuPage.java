@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,14 @@ public class MenuPage extends SeleniumWrappers{
 	@FindBy(linkText = "My account")
 	public WebElement myAccountLink;
 	
+	
+	@FindBy(css = "input[class='dgwt-wcas-search-input']")
+	public WebElement searchInput;
+	
 	//myAccountLink.click();
 
+	public void navigateTo(By locator) {
+		driver.findElement(locator).click();
+	}
+	
 }
